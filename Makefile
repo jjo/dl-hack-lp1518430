@@ -64,7 +64,7 @@ unapply-host: must-be-root
 	make install ROOT=/
 	echo '$(EDIT_N)'| bash -x
 
-show-hacked: must-be-root
+show-applied: must-be-root
 	grep -l epoll_hack /proc/*/maps|egrep -o '[0-9]+'|xargs ps -opid,cgroup:80,start_time,args
 
 clean:

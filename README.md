@@ -9,5 +9,6 @@ It's an horrible hack, WfM, YMMV, please-dont-ask.
 I did:
 
     make build
-    make apply-host
-    make apply-lxcs
+    sudo make apply-host
+    sudo make apply-lxcs
+    sudo make show-applied
