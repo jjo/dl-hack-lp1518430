@@ -16,7 +16,7 @@ install: must-be-root build
     
 uninstall: must-be-root
 	rm -fv $(ROOT)/usr/local/lib/epoll_hack.so
-    
+
 os_upstart = keystone neutron-metadata-agent neutron-vpn-agent neutron-metering-agent neutron-lbaas-agent neutron-ns-metadata-proxy neutron-openvswitch-agent nova-api-os-compute nova-api-metadata nova-conductor nova-novncproxy nova-scheduler nova-cert nova-consoleauth glance-api glance-registry cinder-api cinder-scheduler cinder-volume neutron-server heat-api heat-engine heat-api-cfn nova-compute swift-proxy neutron-dhcp-agent
 
 EDIT_Y=for f in $(os_upstart); do \
@@ -59,6 +59,10 @@ unapply-lxcs: must-be-root
 apply-host: must-be-root
 	make install ROOT=/
 	echo '$(EDIT_Y)'| bash -x
+
+unapply-host: must-be-root
+	make install ROOT=/
+	echo '$(EDIT_N)'| bash -x
 
 show-hacked: must-be-root
 	grep -l epoll_hack /proc/*/maps|egrep -o '[0-9]+'|xargs ps -opid,cgroup:80,start_time,args
